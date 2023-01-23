@@ -33,4 +33,15 @@ const getDetails = async(req,res)=>{
     }
 };
 
-module.exports = {createSteps,getData,getDetails}
+const deleteDetails = async (req, res) => {
+    let id = req.params.id;
+    //console.log(req);
+    try {
+      await Step.findByIdAndDelete(id)
+      return res.status(200).send("Deleted Successfully");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  };
+
+module.exports = {createSteps,getData,getDetails,deleteDetails}
